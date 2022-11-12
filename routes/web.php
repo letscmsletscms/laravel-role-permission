@@ -24,6 +24,9 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+// Route::prefix('admin')->get('/greeting', function () {
+//     return 'Hello World';
+// });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -33,5 +36,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('users', UserController::class);
     
 });
+
 
 

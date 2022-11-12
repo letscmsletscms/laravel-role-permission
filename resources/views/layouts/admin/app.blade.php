@@ -15,9 +15,78 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    
 </head>
 <body>
-    <div id="app">
+<div class="container-fluid">
+    <div class="row content">
+        <!--Main Navigation-->
+<header>
+        
+</header>
+    <nav class="navbar navbar-expand navbar-dark bg-success shadow-sm">
+        <div class="container">
+            <div class="navbar-header">
+            <a class="navbar-brand" href="#">WebSiteName</a>
+            </div>
+            
+                <ul class="navbar-nav ms-auto">
+                    <!-- Authentication Links -->
+                    <!-- Authentication Links -->
+                    @guest
+                        <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                        <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
+                    @else
+                        
+                        <div class="dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </ul>
+                        </div>
+                        
+                    @endguest
+                </ul>
+        </div>
+    </nav>
+
+    
+
+    <div class="container mt-5">
+        <div class="row">
+                <div class="col-sm-2 sidenav">
+                <ul class="nav nav-pills nav-stacked">
+                    <li>klrfh</li>
+                </ul>
+                </div>
+
+                <div class="col-sm-8">
+                    @yield('content')
+                </div>
+        </div>
+    
+
+        <footer class="bg-light text-center text-lg-start">
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2022 Copyright:
+            <a class="text-dark" href="https://www.letscms.com/">Letscms.com</a>
+        </div>
+        <!-- Copyright -->
+        </footer>
+    </div>
+</div>
+</body>
+
 
         <nav class="navbar navbar-expand navbar-dark bg-success shadow-sm">
             <div class="container">
@@ -28,10 +97,10 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse" >
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                        
+                    
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -69,14 +138,8 @@
                 </div>
             </div>
         </nav>
-        <div class="container mt-5">
-            <div class="row">
-                @yield('content')
-            </div>
-            <!-- <main class="py-4">
-                @yield('content')
-            </main> -->
-        </div>
-    </div>
-</body>
+        
+       
+
+
 </html>
