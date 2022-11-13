@@ -32,8 +32,24 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::group(['middleware' => ['auth']], function() {
     
-    Route::resource('roles', RoleController::class);
-    Route::resource('users', UserController::class);
+    Route::resource('roles', RoleController::class)->names([
+        'index'=>'roles.index',
+        'create'=>'roles.create',
+        'store'=>'roles.store',
+        'show'=>'roles.show',
+        'edit'=>'roles.edit',
+        'update'=>'roles.update',
+        'destroy'=>'roles.destroy'
+    ]);
+    Route::resource('users', UserController::class)->names([
+        'index'=>'users.index',
+        'create'=>'users.create',
+        'store'=>'users.store',
+        'show'=>'users.show',
+        'edit'=>'users.edit',
+        'update'=>'users.update',
+        'destroy'=>'users.destroy'
+    ]);
     
 });
 
