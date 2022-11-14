@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin.app')
 
 
 @section('content')
@@ -6,11 +6,11 @@
     <div class="col-md-8">
         <h2>Role Management</h2>
     </div>
-    <div class="col-md-4">
+    <!-- <div class="col-md-4">
         @can('role-create')
             <a class="btn btn-success" href="{{ route('roles.create') }}"> Create New Role</a>
         @endcan
-    </div>
+    </div> -->
 </div>
 
 @if ($message = Session::get('success'))
