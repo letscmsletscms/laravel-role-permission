@@ -52,23 +52,45 @@
     <!-- sidebar-->
     <section class="sidebar position-relative">	
 	  	<div class="multinav">
-		  <div class="multinav-scroll" style="height: 100%;">	
+		  	<div class="multinav-scroll" style="height: 100%;">	
 			  <ul class="sidebar-menu" data-widget="tree">
-				<li><a class="nav-link" href="{{ route('home') }}"><i class="icon-Layout-4-blocks"><span class="path1"></span><span class="path2"></span></i>Dashboard</a></li>
-			  	<li class="treeview"><a class="nav-link" href="{{ route('users.index') }}"><i class="icon-Layout-4-blocks"><span class="path1"></span><span class="path2"></span></i> Manage User</a>
+				<li><a class="nav-link" href="{{ route('home') }}"><i class="fa fa-window-maximize" aria-hidden="true"></i>Dashboard</a></li>
+			  	<li class="treeview"><a class="nav-link" href="{{ route('users.index') }}"><i class="fa fa-user-circle" aria-hidden="true"></i> Manage User</a>
 					<ul class="treeview-menu">
 						<li><a class="nav-link" href="{{ route('users.create') }}">Create User</a></li>
 						<li><a class="nav-link" href="{{ route('users.index') }}">List User</a></li>
 					</ul>
 				</li>
-				<li  class="treeview"><a class="nav-link" href="{{ route('roles.index') }}"><i class="icon-Layout-4-blocks"><span class="path1"></span><span class="path2"></span></i>Manage Role</a>
+				@can('role-edit')
+				<li  class="treeview"><a class="nav-link" href="{{ route('roles.index') }}"><i class="fa fa-users" aria-hidden="true"></i>Manage Role</a>
 					<ul class="treeview-menu">
 				  		<li><a class="nav-link" href="{{ route('roles.create') }}">Create Role</a></li>
 						  <li><a class="nav-link" href="{{ route('roles.index') }}">List Role</a></li>
 				  	</ul>	
 				</li>
+				@endcan
+				<li  class="treeview"><a class="nav-link" href="{{ route('permissions.index') }}"><i class="fa fa-user-secret" aria-hidden="true"></i>Manage Permission</a>
+					<ul class="treeview-menu">
+				  		<li><a class="nav-link" href="{{ route('permissions.create') }}">Create Permissions</a></li>
+						  <li><a class="nav-link" href="{{ route('permissions.index') }}">List Permissions</a></li>
+				  	</ul>	
+				</li>
+				<li  class="treeview"><a class="nav-link" href="{{ route('posts.index') }}"><i class="fa fa-address-card" aria-hidden="true"></i>Manage Post</a>
+					<ul class="treeview-menu">
+				  		<li><a class="nav-link" href="{{ route('posts.create') }}">Create Post</a></li>
+						  <li><a class="nav-link" href="{{ route('posts.index') }}">List Post</a></li>
+				  	</ul>	
+				</li>
 			  </ul>
-              </div>
+        	</div>
+		</div>
+		<div class="sidebar-footer">
+			<a href="javascript:void(0)" class="link" data-bs-toggle="tooltip" title="Settings"><span class="icon-Settings-2"></span></a>
+			<a href="javascript:void(0)" class="link" data-bs-toggle="tooltip" title="Email"><span class="icon-Mail"></span></a>
+			<a href="{{ route('logout') }}" class="link" data-bs-toggle="tooltip" title="Logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><span class="icon-Lock-overturning"><span class="path1"></span><span class="path2"></span></span></a>
+				<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+					@csrf
+				</form>
 		</div>
     </section>
   </aside>
@@ -76,11 +98,12 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
 	  <div class="container-full">
+		
 		<!-- Main content -->
 		<section class="content">
 			<div class="row">
 				<div class="col-12">
-					<div class="box bg-primary-light">
+					<!-- <div class="box bg-primary-light">
 						<div class="box-body d-flex px-0">
 							<div class="flex-grow-1 p-30 flex-grow-1 bg-img dask-bg bg-none-md" style="background-position: right bottom; background-size: auto 100%; background-image: url(../images/svg-icon/color-svg/custom-1.svg)">
 								<div class="row">
@@ -92,7 +115,7 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 					<!-- Main Content -->
 					<div class="container mt-5 ">
 						@yield('content')

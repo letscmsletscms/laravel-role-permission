@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PostsController;
+use App\Http\Controllers\PermissionsController;
+
 
 
 /*
@@ -50,6 +53,21 @@ Route::group(['middleware' => ['auth']], function() {
         'update'=>'users.update',
         'destroy'=>'users.destroy'
     ]);
+
+    
+        Route::resource('posts', PostsController::class)->names([
+            'index'=>'posts.index',
+            'create'=>'posts.create',
+            'store'=>'posts.store',
+            'show'=>'posts.show',
+            'edit'=>'posts.edit',
+            'update'=>'posts.update',
+            'destroy'=>'posts.destroy'
+        ]);
+
+        Route::resource('permissions', PermissionsController::class);
+    
+
     
 });
 

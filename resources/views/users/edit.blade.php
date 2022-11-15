@@ -3,7 +3,7 @@
 
 
 @section('content')
-<div class="row"><h2>Edit New User</h2></div>
+<div class="row"><h2>Edit User</h2></div>
 
 @if (count($errors) > 0)
   <div class="alert alert-danger">

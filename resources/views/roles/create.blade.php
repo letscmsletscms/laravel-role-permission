@@ -7,9 +7,6 @@
         <div class="pull-left">
             <h2><i class="icon-home"></i>Create New Role</h2>
         </div>
-        <!-- <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('roles.index') }}"> Back</a>
-        </div> -->
     </div>
 </div>
 
@@ -33,10 +30,7 @@
             <td>Name:</td>
             <td>{!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}</td>
         </tr>
-        <tr>
-            <td>Name:</td>
-            <td><input type="checkbox" name="name" value="1">fidgi</td>
-        </tr>
+        
         <tr>
             <td>Permission:</td>
             <td>

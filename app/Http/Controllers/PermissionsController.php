@@ -39,7 +39,7 @@ class PermissionsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    { 
         $request->validate([
             'name' => 'required|unique:users,name'
         ]);
@@ -67,9 +67,11 @@ class PermissionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Permission $permission)
     {
-        //
+        return view('permissions.edit', [
+            'permission' => $permission
+        ]);
     }
 
     /**
@@ -79,9 +81,16 @@ class PermissionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Permission $permission)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:permissions,name,'.$permission->id
+        ]);
+
+        $permission->update($request->only('name'));
+
+        return redirect()->route('permissions.index')
+            ->withSuccess(__('Permission updated successfully.'));
     }
 
     /**
@@ -90,8 +99,11 @@ class PermissionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Permission $permission)
     {
-        //
+        $permission->delete();
+
+        return redirect()->route('permissions.index')
+            ->withSuccess(__('Permission deleted successfully.'));
     }
 }
