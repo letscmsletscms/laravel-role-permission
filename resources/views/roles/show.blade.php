@@ -2,16 +2,19 @@
 
 
 @section('content')
-<div class="row"> <h2> Show Role</h2></div>
+<div class="col-12">
+        <div class="box">
+            <div class="box-header with-border">
+                <h2 class="box-title">Show Role</h2>
+            </div>
 
-<div class="row">
-    <table class="table table-bordered">
+    <table class="table table-striped table-bordered display">
         <tr>
-            <td>Name</td>
+            <th>Name</th>
             <td>{{ $role->name }}</td>
         </tr>
         <tr>
-            <td>Permissions:</td>
+            <th>Permissions:</th>
             <td>
             @if(!empty($rolePermissions))
                 @foreach($rolePermissions as $v)
@@ -21,7 +24,7 @@
             </td> 
         </tr>
     </table>
-    <div class="col-md-4"><a class="btn btn-primary" href="{{ route('roles.index') }}"> Back</a></div>
+    <div class="col-md-4"><a class="btn btn-primary" href="{{ route('roles.index') }}"><i class="ti-angle-double-left"></i> Back</a></div>
     
 </div>
 @endsection

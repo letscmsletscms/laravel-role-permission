@@ -16,16 +16,19 @@
 </div>
 @endif
 
-<table class="table table-bordered">
+<table class="table table-bordered table-hover">
+  <thead class=bg-dark>
  <tr>
    <th>No</th>
    <th>Name</th>
    <th>Guard</th>
    <th width="280px">Action</th>
  </tr>
+  </thead>
+  <tbody>
  @foreach ($permissions as $permission)
   <tr>
-    <td>{{ $permission->id }}</td>
+    <td>{{ ++$i }}</td>
     <td>{{ $permission->name }}</td>
     <td>{{ $permission->guard_name }}</td>
     
@@ -37,6 +40,7 @@
         {!! Form::close() !!}
     </td>
   </tr>
+  </tbody>
  @endforeach
 </table>
 

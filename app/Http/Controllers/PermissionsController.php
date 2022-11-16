@@ -13,13 +13,13 @@ class PermissionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $permissions = Permission::all();
 
         return view('permissions.index', [
             'permissions' => $permissions
-        ]);
+        ])->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     /**

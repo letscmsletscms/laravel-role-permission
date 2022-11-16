@@ -1,7 +1,7 @@
 @extends('layouts.admin.app')
 
 @section('content')
-<div class="row"><h2>Create New Permission</h2></div>
+<div class="row"><h2></h2></div>
 
 @if (count($errors) > 0)
   <div class="alert alert-danger">
@@ -13,20 +13,37 @@
     </ul>
   </div>
 @endif
-{!! Form::open(array('route' => 'permissions.store','method'=>'POST')) !!}
-<div class="row">
-    <table class="table ">
-        <tr>
-            <td>Name</td>
-            <td><input type="text" class="form-control" name="name" value="" placeholder="Name" required></td>
-        </tr>
-    </table>
 
-<div class="col-md-4">
-<a class="btn btn-primary" href="{{ route('permissions.index') }}"> Back</a>
-<button type="submit" class="btn btn-primary">Save Permission</button>
+<div class="col-12">
+        <div class="box">
+            <div class="box-header with-border">
+                <h2 class="box-title">Create New Permission</h2>
+            </div>
+            <!-- /.box-header -->
+            <form class="form"  method="post" action="{{ route('permissions.store') }}">
+                @csrf
+                <div class="box-body">
+                    <div class="form-group">
+                        <label class="form-label">Name</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="ti-key"></i></span>
+                            <input type="text" name="name" class="form-control" placeholder="Permission Name">
+                        </div>
+                    </div>
+                    
+                </div>
+                    
+                    
+                <!-- /.box-body -->
+                <div class="box-footer">
+                    <button type="button" class="btn btn-warning me-1"><i class="ti-trash"></i> Cancel
+                    </button>
+                    <button type="submit" class="btn btn-primary"><i class="ti-save-alt"></i> Save
+                    </button>
+                </div>  
+            </form>
+        </div>
+            <!-- /.box -->			
 </div>
-</div>
-{!! Form::close() !!}
 
 @endsection

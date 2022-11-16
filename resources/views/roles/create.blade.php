@@ -2,13 +2,7 @@
 
 
 @section('content')
-<div class="row">
-    <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
-            <h2><i class="icon-home"></i>Create New Role</h2>
-        </div>
-    </div>
-</div>
+<div class="row"><h2></h2></div>
 
 
 @if (count($errors) > 0)
@@ -22,53 +16,46 @@
     </div>
 @endif
 
-
-{!! Form::open(array('route' => 'roles.store','method'=>'POST')) !!}
-<div class="row">
-    <table class="table">
-        <tr>
-            <td>Name:</td>
-            <td>{!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}</td>
-        </tr>
-        
-        <tr>
-            <td>Permission:</td>
-            <td>
-            @foreach($permission as $value)
-            {{ Form::checkbox('permission[]', $value->id, false, array('class' => 'name')) }}
-                {{ $value->name }}
-            </br>
-            @endforeach
-            </td>
-        </tr>
-    </table>
-<div class="col-md-4">
-    <a class="btn btn-primary" href="{{ route('roles.index') }}"> Back</a>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</div>
-    <!-- <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>Name:</strong>
-            {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+<div class="col-12">
+        <div class="box">
+            <div class="box-header with-border">
+                <h2 class="box-title">Create New Role</h2>
+            </div>
+            <!-- /.box-header -->
+            <form class="form"  method="post" action="{{ route('roles.store') }}">
+                @csrf
+                <div class="box-body">
+                    <div class="form-group">
+                        <label class="form-label">Role</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="ti-user"></i></span>
+                            <input type="text" name="name" class="form-control" placeholder="Role Name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Permissions</label>
+                        <div class="checkbox checkbox-success">
+                            <?php
+                            $i=1;
+                            foreach($permission as $key =>$value) { 
+                                ?> 
+                                <input id="checkbox{{$i}}" type="checkbox" name="permission[]" value="{{$value->id}}"><label for="checkbox{{$i}}"> {{$value->name}} </label></br>
+                            <?php $i++; } ?>
+                            
+                        </div>
+                    </div>
+                </div>
+                    
+                    
+                <!-- /.box-body -->
+                <div class="box-footer">
+                    <button type="button" class="btn btn-warning me-1"><i class="ti-trash"></i> Cancel
+                    </button>
+                    <button type="submit" class="btn btn-primary"><i class="ti-save-alt"></i> Save
+                    </button>
+                </div>  
+            </form>
         </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>Permission:</strong>
-            <br/>
-            @foreach($permission as $value)
-                <label>{{ Form::checkbox('permission[]', $value->id, false, array('class' => 'name')) }}
-                {{ $value->name }}</label>
-            <br/>
-            @endforeach
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </div> -->
+            <!-- /.box -->			
 </div>
-{!! Form::close() !!}
-
-
-
 @endsection

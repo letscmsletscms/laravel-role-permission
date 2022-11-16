@@ -23,7 +23,7 @@
 	
     <div class="wrapper">
         <div id="loader"></div>
-    <header class="main-header">
+    <header class="main-header" style="background-color:#E5E4E2;">
 	<div class="d-flex align-items-center logo-box justify-content-start">
 		<a href="#" class="waves-effect waves-light nav-link d-none d-md-inline-block mx-10 push-btn bg-transparent text-white" data-toggle="push-menu" role="button">
 			<span class="icon-Align-left"><span class="path1"></span><span class="path2"></span><span class="path3"></span></span>
@@ -42,7 +42,21 @@
         <!-- Sidebar toggle button-->
 	  <div class="app-menu">
 		<ul class="header-megamenu nav">
-			
+			<div class="dropdown">
+			 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					{{ Auth::user()->name }} <span class="caret"></span><span><i class="fa fa-user-circle" aria-hidden="true"></i></span>
+				</a>
+				<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					<a class="dropdown-item" href="{{ route('logout') }}"
+						onclick="event.preventDefault();
+										document.getElementById('logout-form').submit();">
+							{{ __('Logout') }}
+					</a>
+					<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+						@csrf
+					</form>
+				</ul>
+			</div>
 		</ul> 
 	  </div>
 
@@ -116,10 +130,10 @@
 							</div>
 						</div>
 					</div> -->
+					
 					<!-- Main Content -->
-					<div class="container mt-5 ">
-						@yield('content')
-					</div>
+					@yield('content')
+					
                     </div>				
 			</div>
 		</section>
